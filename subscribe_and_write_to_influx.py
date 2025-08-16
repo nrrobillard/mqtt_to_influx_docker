@@ -22,7 +22,6 @@ def celsius_to_fahrenheit(celsius):
 # mqtt info
 mqtt_username = mqtt_config.mqtt_username
 mqtt_password = mqtt_config.mqtt_password
-
 mqtt_broker_ip = mqtt_config.mqtt_broker_ip
 
 
@@ -41,11 +40,13 @@ url = influx_config.url
 
 
 # set up mqtt client
+logging.info("Setting up MQTT client...")
 client = mqtt.Client()
 # Set the username and password for the MQTT client
 client.username_pw_set(mqtt_username, mqtt_password)
 
 # wait 5 seconds to give influxdB time to start up. TODO: make this somehow poll until the influx is ready
+logging.info("Waiting 5s InfluxDB to start...")
 sleep(5)
 
 # set up influxdB client
